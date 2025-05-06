@@ -1,0 +1,165 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Header Section -->
+<div class="header">
+    <div class="txt text-center py-5">
+        <h3 class="E">BEST E-LEARNING PLATFORM</h3>
+        <p class="one">Learn Job ready skills with free online courses with certificates</p>
+        <p class="two">Explore a wide range of courses to enhance your experience in arts, technology, business, etc... START LEARNING TODAY!</p>
+        <div class="button">
+            <a href="#" class="btn btn-outline-primary m-2">READ MORE</a>
+            <a href="#" class="btn btn-primary m-2">JOIN NOW</a>
+        </div>
+    </div>
+</div>
+
+<!-- Banner Section -->
+<div class="banner text-center py-5 bg-light">
+    <h1>Invest in your professional goals with EduVibe</h1>
+    <p>Get unlimited access to over 90% of courses, Projects, Specializations, and Professional Certificates on Coursera, taught by top instructors:</p>
+    <div class="features d-flex justify-content-around flex-wrap mt-4">
+        {% for i in "1234" %}
+        <div class="feature text-center p-3">
+            <img src="{% static 'icon'|add:i|add:'.png' %}" alt="Feature Icon {{ i }}">
+            <h2>
+                {% if i == "1" %}Learn anything{% elif i == "2" %}Save money{% elif i == "3" %}Flexible learning{% elif i == "4" %}Unlimited certificates{% endif %}
+            </h2>
+            <p>
+                {% if i == "1" %}
+                    Explore any interest or trending topic, take prerequisites, and advance your skills.
+                {% elif i == "2" %}
+                    Spend less money on your learning if you plan to take multiple courses this year.
+                {% elif i == "3" %}
+                    Learn at your own pace, move between multiple courses, or switch to a different course.
+                {% elif i == "4" %}
+                    Earn a certificate for every learning program that you complete at no additional cost.
+                {% endif %}
+            </p>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- About Section -->
+<div class="container my-5">
+    <div class="row align-items-center banner1">
+        <div class="col-lg-6">
+            <img src="{% static 'about.jpg' %}" class="img-fluid rounded shadow" alt="EduVibe">
+        </div>
+        <div class="col-lg-6">
+            <h2 class="fw-bold text-primary">Welcome to EduVibe</h2>
+            <p class="text-muted">
+                At EduVibe, we believe in accessible, innovative learning experiences that adapt to your schedule and learning style.
+                Join us in embracing the future of education and unlock your potential with our immersive online courses.
+            </p>
+            <p class="text-muted">
+                We're dedicated to democratizing education, offering a diverse range of courses taught by industry experts.
+                Our mission is to empower learners worldwide, fostering a community-driven platform where knowledge knows no limits.
+            </p>
+            <ul class="list-group list-group-flush mb-4">
+                <li class="list-group-item">✔️ Expert Instructors</li>
+                <li class="list-group-item">✔️ Live Interactive Sessions</li>
+                <li class="list-group-item">✔️ Comprehensive Course Catalog</li>
+                <li class="list-group-item">✔️ Community Engagement</li>
+                <li class="list-group-item">✔️ Personalized Learning Paths</li>
+                <li class="list-group-item">✔️ Certification and Recognition</li>
+            </ul>
+            <a href="#" class="btn btn-primary btn-lg">Read More</a>
+        </div>
+    </div>
+</div>
+
+<!-- Explore Free Courses -->
+<div class="banner2 text-center bg-light py-5">
+    <img src="{% static 'banner-1.jpg' %}" alt="Banner Image" class="img-fluid mb-3">
+    <h2>Explore Free Courses</h2>
+    <p>Start your online learning journey at Great Learning Academy for free with our short-term basic courses across various in-demand domains.</p>
+    <a href="#" class="btn btn-success">Start For Free</a>
+</div>
+
+<!-- Categories -->
+<section class="categories py-5">
+    <div class="text-center mb-4">
+        <h3>------ CATEGORIES ------</h3>
+        <h1>POPULAR CATEGORIES TO EXPLORE</h1>
+    </div>
+    <div class="topics d-flex flex-wrap justify-content-center gap-4">
+        {% for cat in categories %}
+        <div class="topic text-center">
+            <img src="{% static cat|add:'.png' %}" alt="{{ cat }}" class="img-fluid">
+            <h3>{{ cat|title }}</h3>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Popular Courses -->
+<div class="container my-5">
+    <h1 class="text-center">POPULAR COURSES</h1>
+    <p class="text-center text-muted">------ Explore new and trending free online courses ------</p>
+    <div class="row g-4">
+        {% for i in "12345678910111213" %}
+        <div class="col-md-3">
+            <div class="card h-100">
+                <img src="{% static 'course-'|add:i|add:'.jpg' %}" class="card-img-top" alt="Course {{ i }}">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Course {{ i }}</h5>
+                    <p class="card-text">Rating & Duration</p>
+                    <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#enrollModal">Enroll Now</button>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Testimonials -->
+<section id="testimonials" class="py-5 bg-light">
+    <div class="container">
+        <h2 class="text-center mb-4">What Our Learners Say</h2>
+        <div class="row">
+            {% for user in testimonials %}
+            <div class="col-md-3">
+                <div class="card shadow text-center">
+                    <img src="{{ user.2 }}" class="card-img-top rounded-circle mx-auto mt-3" alt="{{ user.0 }}" style="width: 100px;">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ user.0 }}</h5>
+                        <p class="card-text">"{{ user.1 }}"</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</section>
+
+<!-- Scroll-to-top Button -->
+<button class="scroll-to-top btn btn-warning" style="display:none; position:fixed; bottom:20px; right:20px;">↑ Top</button>
+
+<!-- JavaScript Section -->
+<script>
+    alert("EDUVIBE WELCOMES YOU TO OUR PAGE. WE HOPE THROUGH OUR PLATFORM YOU LEARN WITH FUN.");
+
+    const scrollToTop = document.querySelector('.scroll-to-top');
+    window.addEventListener('scroll', () => {
+        scrollToTop.style.display = window.scrollY > 200 ? 'block' : 'none';
+    });
+
+    scrollToTop.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            document.querySelector(this.getAttribute('href')).scrollIntoView({
+                behavior: 'smooth'
+            });
+        });
+    });
+</script>
+{% endblock %}

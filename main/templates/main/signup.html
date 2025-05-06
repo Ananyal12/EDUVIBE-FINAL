@@ -1,0 +1,99 @@
+{% extends "main/layout.html" %}
+
+{% block body %}
+<style>
+    * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+    }
+
+    html, body {
+        height: 100%;
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        display: flex;
+        flex-direction: column;
+    }
+
+    .navbar {
+        width: 100%;
+        background-color: #343a40;
+        color: #fff;
+        padding: 12px 20px;
+        text-align: center;
+        font-size: 1.2rem;
+    }
+
+    .content {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .signup-container {
+        background: #fff;
+        padding: 25px 30px;
+        border-radius: 10px;
+        box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        width: 320px;
+        text-align: center;
+    }
+
+    .signup-container h2 {
+        margin-bottom: 20px;
+    }
+
+    .signup-container input {
+        width: 100%;
+        padding: 10px;
+        margin: 10px 0;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+    }
+
+    .signup-container button {
+        width: 100%;
+        padding: 10px;
+        background: #28a745;
+        border: none;
+        color: white;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+
+    .signup-container button:hover {
+        background: #218838;
+    }
+
+    .footer {
+        width: 100%;
+        background-color: #343a40;
+        color: white;
+        text-align: center;
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+</style>
+
+<div class="navbar">
+    EduVibe - Register
+</div>
+
+<div class="content">
+    <div class="signup-container">
+        <h2>Sign Up</h2>
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Sign Up</button>
+        </form>
+        <p>Already have an account? <a href="{% url 'login' %}">Login</a></p>
+    </div>
+</div>
+
+<div class="footer">
+    &copy; 2025 EduVibe. All rights reserved.
+</div>
+{% endblock %}

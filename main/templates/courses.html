@@ -1,0 +1,61 @@
+{% extends "layout.html" %}
+{% load static %}
+
+{% block body %}
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+<!-- Header Section -->
+<div class="login text-center py-5">
+    <div class="txt">
+        <p class="three">COURSES</p>
+        <p class="two">EXPLORE YOUR POTENTIAL</p>
+    </div>
+</div>
+
+<!-- Categories Section -->
+<section class="categories text-center my-5">
+    <h3>------ CATEGORIES ------</h3>
+    <h1>POPULAR CATEGORIES TO EXPLORE</h1>
+    <div class="topics d-flex flex-wrap justify-content-center gap-4 mt-4">
+        {% for i in "12345678" %}
+            <div class="topic">
+                <img src="{% static 'cat'|add:i|add:'.png' %}" alt="Category {{ i }}">
+                <h3>
+                    {% if i == "1" %}Microsoft Excel
+                    {% elif i == "2" %}AWS
+                    {% elif i == "3" %}Python
+                    {% elif i == "4" %}Java
+                    {% elif i == "5" %}Web Design
+                    {% elif i == "6" %}Web Development
+                    {% elif i == "7" %}MySQL
+                    {% elif i == "8" %}UI/UX Design
+                    {% endif %}
+                </h3>
+            </div>
+        {% endfor %}
+    </div>
+</section>
+
+<!-- Courses Section -->
+<div class="container my-5">
+    <h1 class="text-center">POPULAR COURSES</h1>
+    <h3 class="text-center">------ Explore new and trending free online courses ------</h3>
+    <div class="row g-4 mt-4">
+        {% for course in courses %}
+            <div class="col-md-3">
+                <div class="card h-100">
+                    <img src="{% static course.image %}" class="card-img-top" alt="{{ course.title }}">
+                    <div class="card-body d-flex flex-column">
+                        <h5 class="card-title">{{ course.title }}</h5>
+                        <p class="card-text">{{ course.rating }} ({{ course.learners }}) | {{ course.duration }}</p>
+                        <button class="btn btn-primary mt-auto" data-bs-toggle="modal" data-bs-target="#enrollModal">
+                            Enroll Now
+                        </button>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
